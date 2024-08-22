@@ -1,0 +1,100 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Contact">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Contact</title>
+
+		<script
+			src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+			async
+			defer
+			is:inline></script>
+	</head>
+
+	<main>
+		<h1><span class="text-gradient">Send us a message</span></h1>
+		<form action="/api/verify" method="POST">
+			<div>
+				<label for="name">Name:</label>
+				<input
+					type="text"
+					id="name"
+					name="name"
+					placeholder="Name"
+					required
+				/>
+			</div>
+
+			<div>
+				<label for="message">Message:</label>
+				<textarea
+					id="message"
+					name="message"
+					placeholder="Hello, you!"
+					required></textarea>
+			</div>
+
+			<div
+				class="cf-turnstile"
+				data-sitekey={import.meta.env.TURNSTILE_SITE_KEY}
+			>
+			</div>
+
+			<button type="submit">Submit</button>
+		</form>
+	</main>
+</Layout>
+
+<style>
+	main {
+		margin: auto;
+		padding: 1rem;
+		width: 800px;
+		max-width: calc(100% - 2rem);
+		color: white;
+		font-size: 20px;
+		line-height: 1.6;
+	}
+	.astro-a {
+		position: absolute;
+		top: -32px;
+		left: 50%;
+		transform: translatex(-50%);
+		width: 220px;
+		height: auto;
+		z-index: -1;
+	}
+	h1 {
+		font-size: 4rem;
+		font-weight: 700;
+		line-height: 1;
+		text-align: center;
+		margin-bottom: 1em;
+	}
+	.text-gradient {
+		background-image: var(--accent-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-size: 400%;
+		background-position: 0%;
+	}
+
+	h2 {
+		margin: 0;
+		font-size: 1.25rem;
+		transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+	}
+	form,
+	form > div {
+		display: flex;
+		flex-direction: column;
+	}
+
+	form {
+		gap: 15px;
+	}
+</style>

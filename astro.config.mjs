@@ -4,7 +4,10 @@ import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
 export default defineConfig({
-  output: "server",
+  output: "hybrid",
+  experimental: {
+    contentLayer: true
+  },
   adapter: cloudflare({
     platformProxy: {
       enabled: true
