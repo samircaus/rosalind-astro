@@ -23,6 +23,11 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
+# vscode
+.vscode/
+
 # wrangler files
 .wrangler
 .dev.vars
+
+
